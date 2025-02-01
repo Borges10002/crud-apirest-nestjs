@@ -5,6 +5,7 @@ export class CreateUserDTO {
   name: string;
 
   @IsEmail()
+  @IsEmail()
   email: string;
 
   @IsStrongPassword({
