@@ -1,8 +1,14 @@
-import { IsEmail, IsString, IsStrongPassword } from 'class-validator';
+import {
+  IsEmail,
+  IsISO8601,
+  IsOptional,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
 
 export class CreateUserDTO {
   @IsString()
-  name: string;
+  nome: string;
 
   @IsEmail()
   @IsEmail()
@@ -16,4 +22,8 @@ export class CreateUserDTO {
     minSymbols: 0,
   })
   password: string;
+
+  @IsOptional()
+  @IsISO8601() // Use the correct decorator for ISO8601 date format
+  birthAt: string;
 }
