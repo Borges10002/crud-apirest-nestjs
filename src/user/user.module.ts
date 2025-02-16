@@ -8,9 +8,10 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { UserIdCheckMiddleware } from 'src/middlewares/user-id-check.middleware';
+import { AuthGuard } from 'src/guads/auth.guard';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [PrismaModule, AuthGuard],
   controllers: [UserController],
   providers: [UserService],
   exports: [UserService],
