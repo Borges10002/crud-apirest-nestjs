@@ -20,7 +20,7 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  async createToken(user: User) {
+  createToken(user: User) {
     return {
       acessToken: this.jwtService.sign(
         {
@@ -38,8 +38,9 @@ export class AuthService {
     };
   }
 
-  async checkToken(token: string) {
+  checkToken(token: string) {
     try {
+      // Verifica o token usando o jwtService
       const data = this.jwtService.verify(token, {
         issuer: this.issuer,
         audience: this.audience,
@@ -47,11 +48,11 @@ export class AuthService {
 
       return data;
     } catch (e) {
-      throw new BadRequestException(e);
+      throw new BadRequestException('Token inválido ou expirado');
     }
   }
 
-  async isValidToken(token: string) {
+  isValidToken(token: string) {
     try {
       this.checkToken(token);
       return true;
